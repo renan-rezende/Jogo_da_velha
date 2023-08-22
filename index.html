@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js" defer></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1>JOGO DA VELHA</h1>
+
+  <form>
+
+    <label for="nome1">Nome do primeiro jogador</label>
+    <input type="text" id="nome1">
+    <label for="nome2">Nome do segundo jogador</label>
+    <input type="text" id="nome2">
+
+  </form>
+  <button id="addPlayers">Adicionar jogadores</button>
+
+  <h2 id="player" data-value="">JOGADOR</h1>
+
+    <table>
+
+      <tr>
+        <td id="11" class="charKey" data-value=""></td>
+        <td id="12" class="charKey" data-value=""></td>
+        <td id="13" class="charKey" data-value=""></td>
+      </tr>
+      <tr>
+        <td id="21" class="charKey" data-value=""></td>
+        <td id="22" class="charKey" data-value=""></td>
+        <td id="23" class="charKey" data-value=""></td>
+      </tr>
+      <tr>
+        <td id="31" class="charKey" data-value=""></td>
+        <td id="32" class="charKey" data-value=""></td>
+        <td id="33" class="charKey" data-value=""></td>
+      </tr>
+    </table>
+
+    <button id="restart"> Reiniciar</button>
+
+    <div id="winner"></div>
+
+
+</body>
+
+</html>
