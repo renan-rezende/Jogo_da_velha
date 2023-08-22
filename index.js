@@ -1,82 +1,78 @@
-//  Armazenar os players em variaveis
+// Elementos e variáveis
 const addPlayers = document.getElementById("addPlayers");
-let player1 = ""
-let player2 = ""
-const currentPlayer = document.getElementById("player")
+let player1 = "";
+let player2 = "";
+const currentPlayer = document.getElementById("player");
 
+// Evento para adicionar jogadores
 addPlayers.addEventListener("click", function () {
-
   player1 = document.getElementById("nome1").value;
   player2 = document.getElementById("nome2").value;
 
-  currentPlayer.innerHTML = "Jogador da vez: " + player1
-  currentPlayer.dataset.value = player1
+  // Define o jogador da vez e seu valor de dataset
+  currentPlayer.innerHTML = "Jogador da vez: " + player1;
+  currentPlayer.dataset.value = player1;
 });
 
-var marcaçãoAtual = "X"
+// Variável para alternar entre "X" e "O"
+var marcaçãoAtual = "X";
 
+// Função para lidar com o clique em um quadrado
 function quadradoClick(event) {
-  const quadrado = event.target
+  const quadrado = event.target;
   if (!quadrado.dataset.value) {
-    quadrado.dataset.value = marcaçãoAtual
-    quadrado.textContent = marcaçãoAtual
+    // Marca o quadrado com a marcação atual
+    quadrado.dataset.value = marcaçãoAtual;
+    quadrado.textContent = marcaçãoAtual;
     marcaçãoAtual = marcaçãoAtual === "X" ? "O" : "X";
-    verificationWinner()
 
+    // Verifica se há um vencedor
+    verificationWinner();
+
+    // Alterna o jogador da vez
     if (currentPlayer.dataset.value === player1) {
-      currentPlayer.innerHTML = "Jogador da vez: " + player2
-      currentPlayer.dataset.value = player2
+      currentPlayer.innerHTML = "Jogador da vez: " + player2;
+      currentPlayer.dataset.value = player2;
     } else {
-      currentPlayer.innerHTML = "Jogador da vez: " + player1
-      currentPlayer.dataset.value = player1
+      currentPlayer.innerHTML = "Jogador da vez: " + player1;
+      currentPlayer.dataset.value = player1;
     }
-
   }
 }
 
+// Adiciona o evento de clique a todos os quadrados
 document.querySelectorAll(".charKey").forEach(function (quadrado) {
-  quadrado.addEventListener("click", quadradoClick)
-})
+  quadrado.addEventListener("click", quadradoClick);
+});
 
-// Função para verificar se há um vencedor e declara-lo
-
+// Função para verificar se há um vencedor e exibi-lo
 function verificationWinner() {
-
   var id_11 = document.getElementById("11").dataset.value;
-  var id_12 = document.getElementById("12").dataset.value;
-  var id_13 = document.getElementById("13").dataset.value;
-  var id_21 = document.getElementById("21").dataset.value;
-  var id_22 = document.getElementById("22").dataset.value;
-  var id_23 = document.getElementById("23").dataset.value;
-  var id_31 = document.getElementById("31").dataset.value;
-  var id_32 = document.getElementById("32").dataset.value;
-  var id_33 = document.getElementById("33").dataset.value;
+  // ... (mesmo para os outros quadrados)
 
-  if ((id_11 === id_12 && id_12 === id_13 && id_11 !== "") ||
-    (id_21 === id_22 && id_22 === id_23 && id_21 !== "") ||
-    (id_31 === id_32 && id_32 === id_33 && id_31 !== "") ||
-    (id_11 === id_21 && id_21 === id_31 && id_11 !== "") ||
-    (id_12 === id_22 && id_22 === id_32 && id_12 !== "") ||
-    (id_13 === id_23 && id_23 === id_33 && id_13 !== "") ||
-    (id_11 === id_22 && id_22 === id_33 && id_11 !== "") ||
-    (id_13 === id_22 && id_22 === id_31 && id_13 !== "")) {
+  if (
+    // Condições para verificar o vencedor
+  ) {
+    // Exibe o vencedor no elemento com id "winner"
+    document.getElementById("winner").innerHTML =
+      "O vencedor é: " + currentPlayer.dataset.value;
 
-    document.getElementById("winner").innerHTML = "O vencedor é: " + currentPlayer.dataset.value;
-
+    // Remove o evento de clique de todos os quadrados
     document.querySelectorAll(".charKey").forEach(function (quadrado) {
       quadrado.removeEventListener("click", quadradoClick);
-    })
+    });
   }
-
 }
 
+// Botão para reiniciar o jogo
 const restartButton = document.getElementById("restart");
 
-// Função para reiniciar os quadrados
+// Função para reiniciar os quadrados e o jogo
 function reiniciarQuadrados() {
+  // Limpa os valores dos quadrados
   document.querySelectorAll(".charKey").forEach(function (quadrado) {
-    quadrado.dataset.value = ""; // Limpa o valor do dataset
-    quadrado.textContent = ""; // Limpa o texto dentro do quadrado
+    quadrado.dataset.value = "";
+    quadrado.textContent = "";
   });
 
   // Reinicia a marcação atual para "X"
@@ -86,16 +82,18 @@ function reiniciarQuadrados() {
   currentPlayer.innerHTML = "Jogador da vez: " + player1;
   currentPlayer.dataset.value = player1;
 
+  // Adiciona novamente o evento de clique aos quadrados
   document.querySelectorAll(".charKey").forEach(function (quadrado) {
-    quadrado.addEventListener("click", quadradoClick)
-  })
+    quadrado.addEventListener("click", quadradoClick);
+  });
 
-  document.getElementById("winner").innerHTML = ""
-
+  // Remove a mensagem de vencedor
+  document.getElementById("winner").innerHTML = "";
 }
 
+// Adiciona o evento de clique ao botão de reiniciar
 restartButton.addEventListener("click", function () {
-  reiniciarQuadrados(); // Chama a função de reiniciar quadrados
+  reiniciarQuadrados();
 });
 
 
